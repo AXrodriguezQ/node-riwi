@@ -21,10 +21,8 @@ booksController.getBook = async (req, res) => {
 }
 
 booksController.createBook = async (req, res) => {
-         const bookData = req.body
-         console.log(bookData)
     try {
-        const newBook = new Book(bookData)
+        const newBook = new Book(req.body)
         const book = await newBook.save()
         res.status(201).json(book)
     } catch (error) {
