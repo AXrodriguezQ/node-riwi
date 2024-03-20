@@ -1,4 +1,5 @@
 const Profesor = require('../models/profesoresModels')
+const Estudiante = require('../models/estudiantesModel')
 
 const controlProfesores = {}
 
@@ -22,8 +23,7 @@ controlProfesores.getProfesor = async (req, res) => {
 
 controlProfesores.getProfesorEnClase = async (req, res) => {
     try {
-        const estudiantes = await fetch('http://localhost:4000/api/v1/estudiantes/')
-        const dataEstudiantes = await estudiantes.json()
+        const dataEstudiantes = await Estudiante.find()
         const profesor = await Profesor.findById(req.params.id)
         const estudiantesEnClase = []
         for (let i = 0; i < dataEstudiantes.length; i++) {
